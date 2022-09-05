@@ -1,11 +1,12 @@
-package me.jjgray.strive;
+package me.jjgray.strive.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import me.jjgray.strive.entities.Activity;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
@@ -17,6 +18,9 @@ public class User {
     private String location;
     private String dob;
     private String photo;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Activity> activities;
 
     public User() {
 

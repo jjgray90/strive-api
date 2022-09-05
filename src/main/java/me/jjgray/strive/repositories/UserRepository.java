@@ -1,5 +1,6 @@
-package me.jjgray.strive;
+package me.jjgray.strive.repositories;
 
+import me.jjgray.strive.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
