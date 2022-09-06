@@ -74,8 +74,10 @@ public class StriveController {
     public ResponseEntity<List<Activity>> getActivitiesByUser(@PathVariable String id) {
         User currentUser = userService.getById(parseInt(id));
 
-
-        List<Activity> activitiesList = activityService.findActivitiesByUser(currentUser);
+        List<Activity> activitiesList = activityService.findActivitiesByUser(currentUser)
+                .stream()
+                .sorted((a, b) -> b.getId() - a.getId())
+                .toList();
         return ResponseEntity.status(HttpStatus.OK).body(activitiesList);
     }
 
