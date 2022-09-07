@@ -1,6 +1,8 @@
 package me.jjgray.strive.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "activities")
@@ -14,12 +16,14 @@ public class Activity {
     private float pace;
     private String location;
 
+    private Timestamp timestamp;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private User user;
 
 
     public Activity() {
-
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
     public Activity(int id, float distance, float time, float pace, String location, User user) {
@@ -29,6 +33,7 @@ public class Activity {
         this.pace = pace;
         this.location = location;
         this.user = user;
+        this.timestamp = new Timestamp(new Date().getTime());
     }
 
     public int getId() {
@@ -77,5 +82,13 @@ public class Activity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }

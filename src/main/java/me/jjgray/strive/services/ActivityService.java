@@ -22,4 +22,13 @@ public class ActivityService {
         return activityRepository.findByUser(user);
     }
 
+    public void deleteActivityById(int id) {
+        Activity activityToDelete = activityRepository.findById(id).orElse(null);
+
+        if (activityToDelete == null) {
+            throw new RuntimeException("Invalid ID");
+        }
+        activityRepository.delete(activityToDelete);
+    }
+
 }

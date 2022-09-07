@@ -41,4 +41,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+    public void deleteUserById(int id) {
+        User userToDelete = userRepository.findById(id).orElse(null);
+        if (userToDelete == null) {
+            throw new RuntimeException("Invalid ID");
+        }
+        userRepository.delete(userToDelete);
+    }
+
 }

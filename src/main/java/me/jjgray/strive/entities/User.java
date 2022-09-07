@@ -19,6 +19,8 @@ public class User {
     private String dob;
     private String photo;
 
+    private boolean km;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Activity> activities;
 
@@ -26,13 +28,14 @@ public class User {
 
     }
 
-    public User(int id, String firstName, String lastName, String email, String location, String dob, String photo) {
+    public User(int id, String firstName, String lastName, String email, String location, String dob, boolean km, String photo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.location = location;
         this.dob = dob;
+        this.km = km;
         this.photo = photo;
     }
 
@@ -91,5 +94,13 @@ public class User {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public boolean isKm() {
+        return km;
+    }
+
+    public void setKm(boolean km) {
+        this.km = km;
     }
 }

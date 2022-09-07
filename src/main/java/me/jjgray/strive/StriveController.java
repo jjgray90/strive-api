@@ -81,4 +81,24 @@ public class StriveController {
         return ResponseEntity.status(HttpStatus.OK).body(activitiesList);
     }
 
+    @DeleteMapping("/user/delete/{id}")
+    public ResponseEntity deleteUser(@PathVariable String id) {
+        try {
+            userService.deleteUserById(parseInt(id));
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("user/activity/delete/{id}")
+    public ResponseEntity deleteActivity(@PathVariable String id) {
+        try {
+            activityService.deleteActivityById(parseInt(id));
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }
