@@ -81,6 +81,16 @@ public class StriveController {
         return ResponseEntity.status(HttpStatus.OK).body(activitiesList);
     }
 
+    @PutMapping("/user/update/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable String id) {
+        try {
+            userService.updateUserById(user, parseInt(id));
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/user/delete/{id}")
     public ResponseEntity deleteUser(@PathVariable String id) {
         try {

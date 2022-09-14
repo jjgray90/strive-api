@@ -41,6 +41,20 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public void updateUserById(User user, int id) {
+        User userToUpdate = userRepository.findById(id).orElse(null);
+
+        assert userToUpdate != null;
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setLocation(user.getLocation());
+        userToUpdate.setDob(user.getDob());
+        userToUpdate.setKm(user.isKm());
+
+        userRepository.save(userToUpdate);
+    }
+
 
     public void deleteUserById(int id) {
         User userToDelete = userRepository.findById(id).orElse(null);
