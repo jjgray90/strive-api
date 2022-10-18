@@ -45,7 +45,7 @@ public class StriveController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
             User newUser = userService.createUser(user);
             return ResponseEntity.status(HttpStatus.OK).body(newUser);
