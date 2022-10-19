@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.lang.Integer.parseInt;
 
@@ -77,7 +78,7 @@ public class StriveController {
         List<Activity> activitiesList = activityService.findActivitiesByUser(currentUser)
                 .stream()
                 .sorted((a, b) -> b.getId() - a.getId())
-                .toList();
+                .collect(Collectors.toList());
         return ResponseEntity.status(HttpStatus.OK).body(activitiesList);
     }
 
